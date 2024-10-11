@@ -1,3 +1,8 @@
+import ChargerInstallPageObject from "../pageObjects/ChargerInstallPageObject"
+
+
+const chargerInstallationPageObject = new ChargerInstallPageObject();
+
 class ChargerInstallation {
 
 
@@ -6,30 +11,30 @@ class ChargerInstallation {
     }
 
     chargerFormValidation(chargerFormTitle){
-       cy.get('h1[class="title"]').should('have.text', chargerFormTitle)
+        chargerInstallationPageObject.getTitle().should('have.text', chargerFormTitle)
     }
 
     serialNumberFormValidation(serialNumberText){
-        cy.get('label[for="input-serial-number"]').should('have.text', serialNumberText)
+        chargerInstallationPageObject.getSerialNumberlbl().should('have.text', serialNumberText)
     }
 
 
     addSerialNumber(serialNumber){
-        cy.get('input[name="input-serial-number"]').type(serialNumber)
-        cy.get('button[class="addButton"]').click()
+        chargerInstallationPageObject.getSerialNumberTxtBox().type(serialNumber)
+        chargerInstallationPageObject.getAddBtn().click()
         cy.wait(1000)
     }
 
     verifySerialNumber(serialNumber){
-        cy.get('div[class="list-text"]').should('include.text',serialNumber)
+        chargerInstallationPageObject.getSerialNumberList().should('include.text',serialNumber)
     }
 
 
     clearAllSerialNumberForm(){
-        cy.get('ul[class="list"]').invoke('text').then(($serialNumberList, index) => {
+        chargerInstallationPageObject.getOverAllSerialList().invoke('text').then(($serialNumberList, index) => {
             if($serialNumberList.length != 0 ) {
-                   cy.get('button[class="list-button"]').each((element) => {
-                cy.get('button[class="list-button"]').contains('X').click()
+                chargerInstallationPageObject.getDeleteBtn().each((element) => {
+                    chargerInstallationPageObject.getDeleteBtn().contains('X').click()
                 cy.wait(1000)
             });
             }
@@ -37,12 +42,12 @@ class ChargerInstallation {
     }
 
     deleteSerialNumber(){
-        cy.get('button[class="list-button"]').contains('X').click()
+        chargerInstallationPageObject.getDeleteBtn().contains('X').click()
     }
 
     validateSerialNumberCount(count){
         if(count == '0') count = 'be.empty'
-        cy.get('ul[class="list"]').invoke('text').should(count)
+        chargerInstallationPageObject.getElementSerialNoCount().invoke('text').should(count)
     }
 
 }
