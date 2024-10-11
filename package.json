@@ -1,0 +1,34 @@
+{
+  "name": "com.reev.ui.api.automation",
+  "version": "2.0.0",
+  "description": "Reev Cypress automation - BDD",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "rimraf -f cypress/report/mochawesome-report/*json",
+    "posttest": "npm run mergeReports && npm run generate-html",
+    "mergeReports": "mochawesome-merge cypress/report/mochawesome-report/*.json> ./mochaFinal.json",
+    "generate-html": "marge mochaFinal.json --reportDir cypress/report",
+    "uiTest": "npx cypress-tags run -e TAGS=@ui --browser chrome --reporter mochawesome && npm run posttest || npm run posttest",
+    "allTest": "npx cypress-tags run -e TAGS=@alltest  --browser chrome --reporter mochawesome && npm run posttest || npm run posttest",
+    "apiTest": "npx cypress-tags run -e TAGS=@api --reporter mochawesome && npm run posttest || npm run posttest",
+    "e2euiapiTest": "npx cypress-tags run -e TAGS=@e2euiapi  --browser chrome --reporter mochawesome && npm run posttest || npm run posttest"
+
+  },
+  "keywords": [
+    "Cypress"
+  ],
+  "author": "Sumesh Suseelan",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.15.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-mochawesome-reporter": "^3.8.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefintions": true,
+    "step_definitions": "cypress/integration/*"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
+  }
+}
