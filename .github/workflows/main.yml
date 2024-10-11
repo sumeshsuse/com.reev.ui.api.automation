@@ -10,32 +10,24 @@ on:
     branches:
     - main
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
-    # Use the latest Cypress browser image for the test job
     runs-on: ubuntu-latest
 
-    # Cypress provides a pre-built image that contains all necessary dependencies
     container:
       image: cypress/browsers:latest
 
-    # Steps to perform in the job
     steps:
-    # Checkout the repository to the GitHub Actions runner
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Set up Node.js environment using the appropriate version
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '16'
 
-    # Install dependencies using npm ci for a clean installation
     - name: Install dependencies
       run: npm ci
 
-    # Run the test command (assumes there's an npm script called "allTest")
     - name: Run Cypress Tests
       run: npm run allTest
