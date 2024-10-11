@@ -1,4 +1,4 @@
-# Cypress E2E Testing with Cucumber BDD
+# REEV - Cypress E2E Testing with Cucumber BDD
 
 This repository contains end-to-end (E2E) tests for the application, using **Cypress** for automation and **Cucumber BDD** for behavior-driven development (BDD) syntax.
 
@@ -6,8 +6,8 @@ This repository contains end-to-end (E2E) tests for the application, using **Cyp
 
 Ensure that both the **UI** and **API** services are up and running locally before running the tests:
 
-- **UI Service**: Should be running at `http://localhost:3000`
-- **API Service**: Should be running at `http://localhost:3001`
+- ** reev UI Service**: Should be running at `http://localhost:3000`
+- ** reev API Service**: Should be running at `http://localhost:3001`
 
 ### Starting the UI and API Services
 
