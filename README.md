@@ -1,4 +1,4 @@
-# REEV - Cypress E2E Testing with Cucumber BDD
+Cypress E2E Testing with Cucumber BDD
 
 This repository contains end-to-end (E2E) tests for the application, using **Cypress** for automation and **Cucumber BDD** for behavior-driven development (BDD) syntax.
 
